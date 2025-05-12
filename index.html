@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Pakistani Cyber Updates</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      nav {
+        background-color: #1a237e;
+        color: white;
+        text-align: center;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .main-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .posts-container {
+        flex: 1;
+        max-width: 650px;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: white;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .feed-title {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #1a237e;
+        font-size: 1.8rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      .feed-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background-color: #1a237e;
+      }
+
+      .posts {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .post {
+        padding: 1.5rem 0;
+      }
+
+      .post:not(:last-child) {
+        border-bottom: 1px solid gray;
+      }
+
+      .post-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 0.8rem;
+      }
+
+      .post-timestamp {
+        display: block;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .post-description {
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .post-link {
+        display: inline-block;
+        background-color: #1a237e;
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .post-link:hover {
+        background-color: #303f9f;
+      }
+
+      .sidebar {
+        width: 350px;
+        margin-left: 0rem;
+        position: sticky;
+        top: 5rem;
+        height: fit-content;
+        overflow-y: auto;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        display: block;
+      }
+
+      .sidebar-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #1a237e;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #1a237e;
+      }
+
+      .sidebar-post {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.2s ease;
+      }
+
+      .sidebar-post:hover {
+        background-color: #f5f5f5;
+      }
+
+      .sidebar-post.active {
+        background-color: #e8eaf6;
+        border-left: 3px solid #1a237e;
+      }
+
+      .sidebar-post-desc {
+        font-size: 0.9rem;
+        color: #555;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; /* Optional: limits to 3 lines */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word; /* allows long words/URLs to break */
+      }
+      .first-word {
+        color: red;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem 0;
+        background-color: #1a237e;
+        color: white;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 900px) {
+        .sidebar {
+          display: none;
+        }
+
+        .main-container {
+          flex-direction: column;
+        }
+
+        .posts-container {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-title">Pakistani Cyber Updates - Security Alerts</div>
+    </nav>
+
+    <div class="main-container">
+      <div class="posts-container">
+        <h2 class="feed-title">Recent Security Incidents</h2>
+        <div class="posts" id="posts-container">
+          <!-- Posts will be dynamically inserted here -->
+        </div>
+      </div>
+
+      <div class="sidebar" id="sidebar">
+        <h3 class="sidebar-title">All Updates</h3>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Pakistani Cyber Updates. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const posts = [
+        {
+          image: "/images/post1.png",
+          description:
+            "ALERT: Catch the action of cyber strike on <strong>Pakistan's Askari Group</strong> of Companies (Army Welfare Trust).",
+          timestamp: "5:42 PM · May 7, 2025",
+          link: "https://x.com/teamwhitel0tus/status/1920089468993728635?s=46",
+        },
+        {
+          description: `SECURITY ALERT: Actions in <strong>Cyber space Mil/ Govt</strong> assets brought down<br />
+      <strong>Army Welfare Trust</strong><br />
+      <strong>PakSat</strong><br />
+      <strong>Anti Narcotics Force</strong><br />
+      <strong>National Defence University (NDU)</strong><br />
+      <strong>Pak Rangers Sindh</strong>`,
+          timestamp: "1:51 PM · May 9, 2025",
+        },
+        {
+          image: "/images/post2.jpg",
+          description:
+            "SECURITY BREACH: Cyber Strike on <strong>Pakistan's Army Welfare Trust</strong>. Approx 40 billion PKR worth assets impacted/destroyed.",
+          timestamp: "2:32 PM · May 7, 2025",
+          link: "https://x.com/teamwhitel0tus/status/1920041469756260484?s=46",
+        },
+        {
+          image: "/images/post3.jpg",
+          description:
+            "URGENT: Paksat has been compromised, targeting <strong>SUPARCO's database</strong>.May be on your next visit to china do beg for better tech as well.",
+          timestamp: "12:31 PM · May 6, 2025",
+          link: "https://x.com/teamwhitel0tus/status/1919648669076238808?s=46",
+        },
+        {
+          image: "/images/post4.png",
+          description:
+            "NOTICE: Owned by <strong>#echo0fGulmarg</strong> CAPITAL DEVELOPMENT AUTHORITY Visit: https://epayslip.cda.gov.pk/default.aspx http://web.archive.org/web/20250507093122 https://epayslip.cda.gov.pk/default.aspx <br /> Sada-e-Kashmir",
+          timestamp: "5:14 PM · May 7, 2025",
+          link: "https://x.com/echo0fgulmarg/status/1920082417806885188?s=46",
+        },
+        {
+          image: "/images/post5.jpg",
+          description:
+            "SECURITY ALERT: No respite to Pakistan military.. Pakistan Air Force's <br /> <strong> Shaheen Foundation </strong>  has been HACKED & wiped! <br />  http://shaheeninsurance.com",
+          timestamp: "1:51 PM · May 9, 2025",
+          link: "https://x.com/teamwhitel0tus/status/1920755910340747738?s=46",
+        },
+      ];
+
+      function formatDescription(text) {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+        // Step 1: Split the text by the first colon
+        const colonIndex = text.indexOf(":");
+        let label = "",
+          rest = "";
+
+        if (colonIndex !== -1) {
+          label = text.slice(0, colonIndex + 1); // include colon
+          rest = text.slice(colonIndex + 1).trim();
+        } else {
+          // fallback if no colon exists
+          label = text;
+          rest = "";
+        }
+
+        // Step 2: Linkify URLs in the rest of the string
+        const linkedRest = rest.replace(urlRegex, (url) => {
+          return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        });
+
+        // Step 3: Return the final formatted string
+        return `<strong class='first-word'>${label}</strong> ${linkedRest}`;
+      }
+
+      function renderPosts() {
+        const postsContainer = document.getElementById("posts-container");
+        const sidebar = document.getElementById("sidebar");
+
+        posts.forEach((post, index) => {
+          const postElement = document.createElement("div");
+          postElement.className = "post";
+          postElement.id = `post-${index}`;
+
+          // Start composing the post HTML
+          let postHTML = `<span class="post-timestamp">${post.timestamp}</span>`;
+
+          if (post.image) {
+            postHTML += `<img src="${post.image}" alt="Post image" class="post-image">`;
+          }
+
+          if (post.description) {
+            postHTML += `<p class="post-description">${formatDescription(
+              post.description
+            )}</p>`;
+          }
+
+          if (post.link) {
+            postHTML += `<a href="${post.link}" class="post-link" target="_blank">View on Twitter</a>`;
+          }
+
+          postElement.innerHTML = postHTML;
+          postsContainer.appendChild(postElement);
+
+          // SIDEBAR POST
+          const sidebarPost = document.createElement("div");
+          sidebarPost.className = `sidebar-post ${index === 0 ? "active" : ""}`;
+          sidebarPost.dataset.target = `post-${index}`;
+          sidebarPost.style.position = "relative";
+
+          let shortDesc = post.description
+            ? post.description.length > 100
+              ? post.description.substring(0, 100) + "..."
+              : post.description
+            : "No description available";
+
+          sidebarPost.innerHTML = `
+                            <div class="sidebar-post-content">
+                              <p class="sidebar-post-desc">${shortDesc}</p>
+                            </div>
+                          `;
+
+          sidebarPost.addEventListener("click", () => {
+            document
+              .getElementById(`post-${index}`)
+              .scrollIntoView({ behavior: "smooth" });
+          });
+
+          sidebar.appendChild(sidebarPost);
+        });
+      }
+
+      function handleScroll() {
+        const posts = document.querySelectorAll(".post");
+        const sidebarPosts = document.querySelectorAll(".sidebar-post");
+
+        let currentPostIndex = 0;
+
+        posts.forEach((post, index) => {
+          const rect = post.getBoundingClientRect();
+          if (rect.top <= 200 && rect.bottom >= 200) {
+            currentPostIndex = index;
+          }
+        });
+
+        sidebarPosts.forEach((sidebarPost, index) => {
+          if (index === currentPostIndex) {
+            sidebarPost.classList.add("active");
+          } else {
+            sidebarPost.classList.remove("active");
+          }
+        });
+      }
+
+      window.onload = () => {
+        renderPosts();
+        window.addEventListener("scroll", handleScroll);
+      };
+    </script>
+  </body>
+</html>
