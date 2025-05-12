@@ -21,6 +21,7 @@
         background-color: #f5f5f5;
         color: #333;
         line-height: 1.6;
+        position: relative;
       }
 
       nav {
@@ -187,7 +188,19 @@
       .first-word {
         color: red;
       }
-
+      .lang-toggle {
+        top: 0;
+        right: 0;
+        position: absolute;
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        z-index: 9999;
+      }
       footer {
         text-align: center;
         padding: 1rem 0;
@@ -227,20 +240,48 @@
     </style>
   </head>
   <body>
+    <button class="lang-toggle" onclick="toggleLanguage()">
+      Switch to English
+    </button>
+
     <nav>
-      <div class="nav-title">Pakistani Cyber Updates - Security Alerts</div>
+      <div
+        class="nav-title"
+        data-en="Pakistani Cyber Updates - Security Alerts"
+        data-ur="پاکستانی سائبر اپڈیٹس - سیکیورٹی الرٹس"
+      >
+        پاکستانی سائبر اپڈیٹس - سیکیورٹی الرٹس
+      </div>
+
+      <!-- <div class="nav-title">Pakistani Cyber Updates - Security Alerts</div> -->
     </nav>
 
     <div class="main-container">
       <div class="posts-container">
-        <h2 class="feed-title">Recent Security Incidents</h2>
+        <h2
+          class="feed-title"
+          data-en="Recent Security Incidents"
+          data-ur="حالیہ سیکیورٹی واقعات"
+        >
+          حالیہ سیکیورٹی واقعات
+        </h2>
+
+        <!-- <h2 class="feed-title">Recent Security Incidents</h2> -->
         <div class="posts" id="posts-container">
           <!-- Posts will be dynamically inserted here -->
         </div>
       </div>
 
       <div class="sidebar" id="sidebar">
-        <h3 class="sidebar-title">All Updates</h3>
+        <h3
+          class="sidebar-title"
+          data-en="All Updates"
+          data-ur="تمام تازہ کاریاں"
+        >
+          تمام تازہ کاریاں
+        </h3>
+
+        <!-- <h3 class="sidebar-title">All Updates</h3> -->
       </div>
     </div>
 
@@ -249,6 +290,19 @@
     </footer>
 
     <script>
+      let currentLang = "ur";
+
+      function toggleLanguage() {
+        const elements = document.querySelectorAll("[data-en]");
+        currentLang = currentLang === "ur" ? "en" : "ur";
+
+        elements.forEach((el) => {
+          el.textContent = el.dataset[currentLang];
+        });
+
+        document.querySelector(".lang-toggle").textContent =
+          currentLang === "ur" ? "Switch to English" : "اردو میں تبدیل کریں";
+      }
       const posts = [
         {
           image: "images/post1.png",
