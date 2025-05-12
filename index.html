@@ -94,8 +94,16 @@
         width: 100%;
         max-height: 300px;
         object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 0.8rem;
+        border-radius: 12px; /* Slightly more rounded corners */
+        margin-bottom: 1rem; /* Increased spacing for visual breathing room */
+        border: 2px solid #e0e0e0; /* Softer light gray border */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .post-image:hover {
+        transform: scale(1.01); /* Slight zoom effect on hover */
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Enhance shadow on hover */
       }
 
       .post-timestamp {
@@ -199,6 +207,21 @@
 
         .posts-container {
           max-width: 100%;
+        }
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+        .nav-title {
+          font-size: 1.25rem;
+        }
+
+        .feed-title {
+          font-size: 1rem;
+        }
+
+        .footer-text {
+          font-size: 0.7rem;
         }
       }
     </style>
